@@ -4,19 +4,34 @@ import { LoginScreen } from '../components/login/LoginScreen';
 
 import { DashboardRoutes } from './DashboardRoutes';
 
-
-
+import { PrivateRoute } from './PrivateRoute';
+import { PublicRoute } from './PublicRoute';
 export const AppRouter = () => {
+
+
     return (
-        <BrowserRouter>
-            
-            <Routes>
+            <BrowserRouter>
                 
-                <Route path="/login" element={<LoginScreen />} />
+                <Routes>
+                    
+                    {/* <Route path="/login" element={<LoginScreen />} /> */}
 
-                <Route path="/*" element={ <DashboardRoutes />  } />
+                    <Route path='/login' element={
+                        <PublicRoute>
+                            <LoginScreen />
+                        </PublicRoute>
+                        }
+                    />
 
-            </Routes>
-        </BrowserRouter>
+                    <Route path="/*" element={ 
+                        <PrivateRoute>  
+                            <DashboardRoutes />
+                        </ PrivateRoute>
+                        } 
+                    />
+                    {/* <Route path="/*" element={ <DashboardRoutes />  } /> */}
+
+                </Routes>
+            </BrowserRouter>
     )
 }

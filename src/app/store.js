@@ -1,0 +1,11 @@
+import { createStore, compose } from "redux"; // function to create store
+
+import reducer from "./reducer";
+
+const enhancers = compose(
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
+
+const store = createStore( reducer, enhancers );
+
+export default store;

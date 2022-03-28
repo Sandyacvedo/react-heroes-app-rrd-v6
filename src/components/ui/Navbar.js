@@ -1,12 +1,21 @@
 import React from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 
+import { useSelector, useDispatch } from 'react-redux';
+
+import { LOGOUT } from '../../app/auth/actions';
 
 export const Navbar = () => {
 
     const navigate = useNavigate();
 
+    const dispatch = useDispatch();
+
+    const { name } = useSelector((state) => state.auth)
+
     const handleLogout = () => {
+        dispatch({ type:LOGOUT });
+        
         navigate('/login', {
             replace: true
         });
@@ -52,7 +61,7 @@ export const Navbar = () => {
                 <ul className="navbar-nav ml-auto">
 
                     <span className="nav-item nav-link text-info">
-                        Fernando
+                        {name}
                     </span>
                     
                     <button 
